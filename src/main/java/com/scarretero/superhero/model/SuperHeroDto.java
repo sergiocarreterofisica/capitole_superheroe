@@ -5,6 +5,7 @@ package com.scarretero.superhero.model;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,17 +29,20 @@ public class SuperHeroDto implements Serializable {
 	private static final long serialVersionUID = 287892631292498403L;
 
 	/**
-	 * The superheroe identificator
+	 * The superhero identificator
 	 */
+	@ApiModelProperty(value = "The superhero identificator")
 	private Long id;
 
 	/**
-	 * The superheroe name
+	 * The superhero name
 	 */
+	@ApiModelProperty(value = "The superhero name")
 	private String name;
 
 	/**
-	 * The superheroe city
+	 * The superhero city
 	 */
+	@ApiModelProperty(value = "The superhero city")
 	private String city;
 }
