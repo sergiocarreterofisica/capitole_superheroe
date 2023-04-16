@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.scarretero.superhero.service.impl;
 
 import java.util.List;
@@ -77,25 +74,6 @@ public class SuperHeroServiceImpl implements SuperHeroService {
 		return Optional.empty();
 	}
 
-//	/**
-//	 * @see SuperHeroService#findById(Long)
-//	 */
-//	@Override
-//	@Transactional(readOnly = true)
-//	public SuperHeroDto findById(Long id) {
-//
-//		Optional<SuperHero> superHeroOpt = repository.findById(id);
-//
-//		if (superHeroOpt.isPresent()) {
-//
-//			return mapper.fromSuperHeroToSuperHeroDto(superHeroOpt.get());
-//
-//		}
-//
-//		return null;
-//
-//	}
-
 	/**
 	 * @see SuperHeroService#findAllSuperHerosByNameContainingIgnoreCase(String)
 	 */
@@ -114,9 +92,9 @@ public class SuperHeroServiceImpl implements SuperHeroService {
 	 */
 	@Override
 	@Transactional
-	public SuperHeroDto updateSuperHero(SuperHeroDto superHeroDto) {
+	public SuperHeroDto updateSuperHero(SuperHeroDto superHeroDto, Long id) {
 
-		Optional<SuperHero> superHeroOpt = repository.findById(superHeroDto.getId());
+		Optional<SuperHero> superHeroOpt = repository.findById(id);
 
 		if (superHeroOpt.isPresent()) {
 
