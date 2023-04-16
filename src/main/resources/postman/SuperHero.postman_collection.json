@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "625241c7-6908-4f02-8bd3-4e5f504cf8a4",
+		"name": "SuperHero",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Save - Superhero already exists",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Batman\",\r\n    \"city\":\"Gotham\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save - Superhero doesn't exist yet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Super López\",\r\n    \"city\":\"Madrid\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update - SuperHeroe already exists",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 10,\r\n    \"name\":\"Super López\",\r\n    \"city\":\"Barcelona\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update - SuperHeroe doesn't exist yet",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 15,\r\n    \"name\":\"Super López\",\r\n    \"city\":\"Barcelona\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get - All the superheroes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get - All the superheroes whose name contains the value 01",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes?name=Sup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Sup"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get - All the superheroes whose name contains the value 02",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes?name=Man",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Man"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get - All the superheroes whose name contains the value 03",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes?name=Fer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Fer"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get - Superhero exists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get - Superhero doesn't exist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/32",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						"32"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete - Superhero exists",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete - Superhero doesn't exist",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/52",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						"52"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
