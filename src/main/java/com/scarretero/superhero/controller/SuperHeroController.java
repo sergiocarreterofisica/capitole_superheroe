@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.scarretero.superhero.annotation.ExecutionIntervalAnnotation;
 import com.scarretero.superhero.model.SuperHeroDto;
 import com.scarretero.superhero.service.SuperHeroService;
 
@@ -53,6 +54,7 @@ public class SuperHeroController {
 	 * @return {@link ResponseEntity}
 	 */
 	@GetMapping(path = "/superheroes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ExecutionIntervalAnnotation
 	public ResponseEntity<?> getSuperHero(@PathVariable(value = "id", required = true) Long id) {
 
 		Optional<SuperHeroDto> optionalSuperHeroDto = service.findById(id);
@@ -73,6 +75,7 @@ public class SuperHeroController {
 	 */
 	@GetMapping(path = "/superheroes", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
+	@ExecutionIntervalAnnotation
 	public List<SuperHeroDto> getSuperHeroes(@RequestParam(value = "name", required = false) String name) {
 
 		if (StringUtils.isNotBlank(name)) {
@@ -93,6 +96,7 @@ public class SuperHeroController {
 	 * @return {@link ResponseEntity}
 	 */
 	@PostMapping(path = "/superheroes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ExecutionIntervalAnnotation
 	public ResponseEntity<?> insertSuperHero(@RequestBody(required = true) SuperHeroDto superHeroDto) {
 
 		SuperHeroDto superHeroDtoInserted = service.saveSuperHero(superHeroDto);
@@ -113,6 +117,7 @@ public class SuperHeroController {
 	 * @return {@link ResponseEntity}
 	 */
 	@PutMapping(path = "/superheroes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ExecutionIntervalAnnotation
 	public ResponseEntity<?> updateSuperHero(@RequestBody(required = true) SuperHeroDto superHeroDto,
 			@PathVariable(value = "id", required = true) Long id) {
 
@@ -134,6 +139,7 @@ public class SuperHeroController {
 	 * @return {@link ResponseEntity}
 	 */
 	@DeleteMapping(path = "superheroes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ExecutionIntervalAnnotation
 	public ResponseEntity<?> deleteSuperHero(@PathVariable(value = "id", required = true) Long id) {
 
 		Boolean superHeroDeleted = service.deleteSuperHero(id);
