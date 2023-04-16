@@ -112,10 +112,11 @@ public class SuperHeroController {
 	 * @param superHeroDto - the superhero
 	 * @return {@link ResponseEntity}
 	 */
-	@PutMapping(path = "/superheroes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> updateSuperHero(@RequestBody(required = true) SuperHeroDto superHeroDto) {
+	@PutMapping(path = "/superheroes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> updateSuperHero(@RequestBody(required = true) SuperHeroDto superHeroDto,
+			@PathVariable(value = "id", required = true) Long id) {
 
-		SuperHeroDto superHeroDtoUpdated = service.updateSuperHero(superHeroDto);
+		SuperHeroDto superHeroDtoUpdated = service.updateSuperHero(superHeroDto, id);
 
 		if (!Objects.isNull(superHeroDtoUpdated)) {
 

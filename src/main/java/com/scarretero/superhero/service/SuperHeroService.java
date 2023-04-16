@@ -49,9 +49,10 @@ public interface SuperHeroService {
 	 * Update a superhero
 	 * 
 	 * @param superHeroDto - Superhero to update
+	 * @param id           - The superhero identifier
 	 * @return {@link SuperHeroDto}
 	 */
-	public SuperHeroDto updateSuperHero(SuperHeroDto superHeroDto);
+	public SuperHeroDto updateSuperHero(SuperHeroDto superHeroDto, Long id);
 
 	/**
 	 * Save a superhero
