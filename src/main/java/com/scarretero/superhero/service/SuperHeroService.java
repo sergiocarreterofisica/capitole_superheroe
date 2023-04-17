@@ -28,13 +28,13 @@ public interface SuperHeroService {
 	 */
 	public Optional<SuperHeroDto> findById(Long id);
 
-//	/**
-//	 * Find superhero by id
-//	 * 
-//	 * @param id - Id of the superhero
-//	 * @return {@link SuperHeroDto}
-//	 */
-//	public SuperHeroDto findById(Long id);
+	/**
+	 * Find superhero by name
+	 * 
+	 * @param name - Name of the superhero
+	 * @return {@link SuperHeroDto}
+	 */
+	public SuperHeroDto findByName(String name);
 
 	/**
 	 * Find all the superheroes than contain the parameter value in his name no

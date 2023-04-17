@@ -66,7 +66,7 @@
 			"response": []
 		},
 		{
-			"name": "Update - SuperHeroe already exists",
+			"name": "Update - SuperHeroe already exists with same Id and same Name",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -90,6 +90,36 @@
 						"api",
 						"superheroes",
 						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update - SuperHeroe already exists with same Name but distinct Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 20,\r\n    \"name\":\"Super Rebujito\",\r\n    \"city\":\"Sevilla\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						"20"
 					]
 				}
 			},

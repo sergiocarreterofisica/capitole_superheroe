@@ -61,7 +61,7 @@ public class SuperHeroController {
 	@ExecutionIntervalAnnotation
 	@ApiOperation(value = "Get a superhero by identifier")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Superhero founded"),
-			@ApiResponse(code = 409, message = "Superhero not founded") })
+			@ApiResponse(code = 404, message = "Superhero not founded") })
 	public ResponseEntity<?> getSuperHero(
 			@ApiParam(value = "Superhero identifier") @PathVariable(value = "id", required = true) Long id) {
 
@@ -136,10 +136,18 @@ public class SuperHeroController {
 	@ExecutionIntervalAnnotation
 	@ApiOperation(value = "Update a superhero.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Superhero updated"),
-			@ApiResponse(code = 404, message = "Superhero not saved because doesn't exist") })
+			@ApiResponse(code = 404, message = "Superhero not updated because doesn't exist"),
+			@ApiResponse(code = 409, message = "Superhero not updated because another one with that name already exists") })
 	public ResponseEntity<?> updateSuperHero(
 			@ApiParam(value = "Superhero") @RequestBody(required = true) SuperHeroDto superHeroDto,
 			@ApiParam(value = "Superhero identifier") @PathVariable(value = "id", required = true) Long id) {
+
+		// You have to check if a user with that name already exists.
+		SuperHeroDto superHeroSameName = service.findByName(superHeroDto.getName());
+
+		if (!Objects.isNull(superHeroSameName) && !Objects.equals(superHeroSameName.getId(), id)) {
+			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+		}
 
 		SuperHeroDto superHeroDtoUpdated = service.updateSuperHero(superHeroDto, id);
 
