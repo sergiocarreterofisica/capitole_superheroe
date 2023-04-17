@@ -75,6 +75,24 @@ public class SuperHeroServiceImpl implements SuperHeroService {
 	}
 
 	/**
+	 * @see SuperHeroService#findByName(String)
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public SuperHeroDto findByName(String name) {
+
+		SuperHero superHero = repository.findByName(name);
+
+		if (!Objects.isNull(superHero)) {
+
+			return mapper.fromSuperHeroToSuperHeroDto(superHero);
+
+		}
+
+		return null;
+	}
+
+	/**
 	 * @see SuperHeroService#findAllSuperHerosByNameContainingIgnoreCase(String)
 	 */
 	@Override

@@ -1,6 +1,10 @@
 package com.scarretero.superhero.service.impl;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -96,7 +100,7 @@ class SuperHeroServiceImplTest {
 	@Test
 	void testFindById() {
 
-		when(repository.findById(Long.valueOf(anyLong()))).thenReturn(getSuperHero());
+		when(repository.findById(Long.valueOf(anyLong()))).thenReturn(getSuperHeroOpt());
 		when(mapper.fromSuperHeroToSuperHeroDto(any())).thenReturn(getSuperHeroDto());
 
 		Optional<SuperHeroDto> superHeroDto = service.findById(Long.valueOf(3));
@@ -113,6 +117,29 @@ class SuperHeroServiceImplTest {
 		Optional<SuperHeroDto> superHeroDto = service.findById(anyLong());
 
 		assertTrue(superHeroDto.isEmpty());
+
+	}
+
+	@Test
+	void testFindByName() {
+
+		when(repository.findByName(anyString())).thenReturn(getSuperHero());
+		when(mapper.fromSuperHeroToSuperHeroDto(any())).thenReturn(getSuperHeroDto());
+
+		SuperHeroDto superHeroDto = service.findByName(anyString());
+
+		assertNotNull(superHeroDto);
+
+	}
+
+	@Test
+	void testFindByNameNotExist() {
+
+		when(repository.findByName(anyString())).thenReturn(null);
+
+		SuperHeroDto superHeroDto = service.findByName(anyString());
+
+		assertNull(superHeroDto);
 
 	}
 
@@ -145,9 +172,9 @@ class SuperHeroServiceImplTest {
 	@Test
 	void testUpdateSuperHero() {
 
-		when(repository.findById(anyLong())).thenReturn(getSuperHero());
-		when(mapper.fromSuperHeroDtoToSuperHero(any())).thenReturn(getSuperHero().get());
-		when(repository.save(any())).thenReturn(getSuperHero().get());
+		when(repository.findById(anyLong())).thenReturn(getSuperHeroOpt());
+		when(mapper.fromSuperHeroDtoToSuperHero(any())).thenReturn(getSuperHeroOpt().get());
+		when(repository.save(any())).thenReturn(getSuperHeroOpt().get());
 		when(mapper.fromSuperHeroToSuperHeroDto(any())).thenReturn(getSuperHeroDto());
 
 		SuperHeroDto superHeroDto = service.updateSuperHero(any(), Long.valueOf(3));
@@ -173,8 +200,8 @@ class SuperHeroServiceImplTest {
 	void testSaveSuperHero() {
 
 		when(repository.findByName(anyString())).thenReturn(null);
-		when(mapper.fromSuperHeroDtoToSuperHero(any())).thenReturn(getSuperHero().get());
-		when(repository.save(any())).thenReturn(getSuperHero().get());
+		when(mapper.fromSuperHeroDtoToSuperHero(any())).thenReturn(getSuperHeroOpt().get());
+		when(repository.save(any())).thenReturn(getSuperHeroOpt().get());
 		when(mapper.fromSuperHeroToSuperHeroDto(any())).thenReturn(getSuperHeroDto());
 
 		SuperHeroDto superHeroDto = service.saveSuperHero(getSuperHeroDto());
@@ -189,7 +216,7 @@ class SuperHeroServiceImplTest {
 	@Test
 	void testSaveSuperHeroExists() {
 
-		when(repository.findByName(anyString())).thenReturn(getSuperHero().get());
+		when(repository.findByName(anyString())).thenReturn(getSuperHeroOpt().get());
 
 		SuperHeroDto superHeroDto = service.saveSuperHero(getSuperHeroDto());
 
@@ -199,26 +226,26 @@ class SuperHeroServiceImplTest {
 
 	@Test
 	void testDeleteSuperHero() {
-		
-		when(repository.findById(anyLong())).thenReturn(getSuperHero());
-		
+
+		when(repository.findById(anyLong())).thenReturn(getSuperHeroOpt());
+
 		Boolean deleted = service.deleteSuperHero(anyLong());
-		
+
 		assertTrue(deleted.booleanValue());
 
 	}
 
 	@Test
 	void testDeleteSuperHeroNotExist() {
-		
+
 		when(repository.findById(anyLong())).thenReturn(Optional.empty());
-		
+
 		Boolean deleted = service.deleteSuperHero(Long.valueOf(100));
-		
+
 		assertFalse(deleted.booleanValue());
-		
+
 	}
-	
+
 	private List<SuperHero> getAllSuperHeroes() {
 
 		List<SuperHero> listSuperHero = new ArrayList<SuperHero>();
@@ -240,10 +267,16 @@ class SuperHeroServiceImplTest {
 
 	}
 
-	private Optional<SuperHero> getSuperHero() {
+	private Optional<SuperHero> getSuperHeroOpt() {
 
 		SuperHero superHero = new SuperHero(Long.valueOf(1), "Wonder Woman", "Themyscira");
 		return Optional.of(superHero);
+
+	}
+
+	private SuperHero getSuperHero() {
+
+		return new SuperHero(Long.valueOf(1), "Wonder Woman", "Themyscira");
 
 	}
 
